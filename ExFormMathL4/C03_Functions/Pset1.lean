@@ -294,6 +294,23 @@ by
   -- ⊢ f a = f b
   exact hg h
 
+-- Comentario de JA: La 5ª demostración se puede simplificar como se
+-- muestra a continuación.
+
+-- Proof 6
+-- =======
+
+example
+ (hf : Injective f)
+ (hg : Injective g)
+ : Injective (g ∘ f) :=
+by
+  intro a b h
+  -- a b : X
+  -- h : g (f a) = g (f b)
+  -- ⊢ a = b
+  exact hf (hg h)
+
 
 -- ---------------------------------------------------------------------
 -- Exercise 4. Prove that

@@ -311,6 +311,17 @@ by
   -- ⊢ a = b
   exact hf (hg h)
 
+-- Comentario de JA: La 6ª demostración se puede simplificar como se
+-- muestra a continuación.
+
+-- Proof 7
+-- =======
+
+example
+ (hf : Injective f)
+ (hg : Injective g)
+ : Injective (g ∘ f) :=
+fun _ _ h => hf (hg h)
 
 -- ---------------------------------------------------------------------
 -- Exercise 4. Prove that

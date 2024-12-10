@@ -265,8 +265,6 @@ example
  (hg : Injective g)
  : Injective (g ∘ f) :=
 by
-  simp [injective_def, comp_eval]
-  -- ⊢ ∀ (a b : X), g (f a) = g (f b) → a = b
   intro a b h
   -- a b : X
   -- h : g (f a) = g (f b)
@@ -276,6 +274,26 @@ by
   apply hg
   -- ⊢ g (f a) = g (f b)
   exact h
+
+-- Comentario de JA: La 4ª demostración se puede simplificar como se
+-- muestra a continuación.
+
+-- Proof 5
+-- =======
+
+example
+ (hf : Injective f)
+ (hg : Injective g)
+ : Injective (g ∘ f) :=
+by
+  intro a b h
+  -- a b : X
+  -- h : g (f a) = g (f b)
+  -- ⊢ a = b
+  apply hf
+  -- ⊢ f a = f b
+  exact hg h
+
 
 -- ---------------------------------------------------------------------
 -- Exercise 4. Prove that

@@ -188,18 +188,51 @@ surjective_id
 -- then so is g ∘ f.
 -- ---------------------------------------------------------------------
 
--- Proof 1 (detailed)
-example (f : X → Y) (g : Y → Z) (hf : Injective f) (hg : Injective g) : Injective (g ∘ f) := by
+-- Proof 1
+-- =======
+
+example
+  (hf : Injective f)
+  (hg : Injective g)
+  : Injective (g ∘ f) :=
+by
   rw [injective_def] at *
+  -- hf : ∀ (a b : X), f a = f b → a = b
+  -- hg : ∀ (a b : Y), g a = g b → a = b
+  -- ⊢ ∀ (a b : X), (g ∘ f) a = (g ∘ f) b → a = b
   intro a b h
+  -- a b : X
+  -- h : (g ∘ f) a = (g ∘ f) b
+  -- ⊢ a = b
   rw [comp_eval, comp_eval] at h
+  -- h : g (f a) = g (f b)
   apply hg at h
+  -- h : f a = f b
   apply hf at h
+  -- h : a = b
   exact h
 
--- Proof 2 (automatic)
-example (f : X → Y) (g : Y → Z) (hf : Injective f) (hg : Injective g) : Injective (g ∘ f) := by
+-- Proof 2
+-- =======
+
+example
+  (hf : Injective f)
+  (hg : Injective g)
+  : Injective (g ∘ f) :=
+by
   exact Injective.comp hg hf
+
+-- Comentario de JA: La 2ª demostración se puede simplificar como se
+-- muestra a continuación.
+
+-- Proof 2'
+-- =======
+
+example
+  (hf : Injective f)
+  (hg : Injective g)
+  : Injective (g ∘ f) :=
+Injective.comp hg hf
 
 -- Proof 3 (equilibrated)
 example (f : X → Y) (g : Y → Z) (hf : Injective f) (hg : Injective g) : Injective (g ∘ f) := by

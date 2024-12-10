@@ -1,11 +1,11 @@
 -- C03_Functions/Pset1.lean
 -- Problem set 1: inyectivity, surjectivity, biyectivity.
 -- Gabriel Sierra Gallego.
--- Seville, November 03, 2024
+-- Seville, November 3, 2024
 -- ---------------------------------------------------------------------
 
 -- In this problem set, we study how to work with inyectivity,
---surjectivity, biyectivity of functions.
+-- surjectivity, biyectivity of functions.
 --
 -- It is based on [Section03functions/Sheet1.lean](https://tinyurl.com/2bbg8hdw)
 -- from [Kevin Buzzard's course](https://tinyurl.com/26ek593r).
@@ -184,8 +184,8 @@ example : Surjective (id : X → X) :=
 surjective_id
 
 -- ---------------------------------------------------------------------
--- Exercise 3. Prove that
---    (f : X → Y) (g : Y → Z) (hf : Injective f) (hg : Injective g) : Injective (g ∘ f)
+-- Exercise 8. Prove that if f : X → Y and g : Y → Z are injective,
+-- then so is g ∘ f.
 -- ---------------------------------------------------------------------
 
 -- Proof 1 (detailed)

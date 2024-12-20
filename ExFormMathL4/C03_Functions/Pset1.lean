@@ -378,16 +378,35 @@ example
   : Surjective (g ∘ f) :=
 Surjective.comp hg hf
 
--- Proof 3 (equilibrated)
-example (f : X → Y) (g : Y → Z) (hf : Surjective f) (hg : Surjective g) : Surjective (g ∘ f) := by
+-- Proof 3
+-- =======
+
+example
+  (hf : Surjective f)
+  (hg : Surjective g)
+  : Surjective (g ∘ f) :=
+by
   rw [surjective_def] at *
+  -- hf : ∀ (b : Y), ∃ a, f a = b
+  -- hg : ∀ (b : Z), ∃ a, g a = b
+  -- ⊢ ∀ (b : Z), ∃ a, (g ∘ f) a = b
   simp [comp_eval]
+  -- ⊢ ∀ (b : Z), ∃ a, g (f a) = b
   intro z
+  -- z : Z
+  -- ⊢ ∃ a, g (f a) = z
   specialize hg z
+  -- hg : ∃ a, g a = z
   obtain ⟨y, hy⟩ := hg
+  -- y : Y
+  -- hy : g y = z
   specialize hf y
+  -- hf : ∃ a, f a = y
   obtain ⟨x, hx⟩ := hf
+  -- x : X
+  -- hx : f x = y
   use x
+  -- ⊢ g (f x) = z
   simp [hx, hy]
 
 -- ---------------------------------------------------------------------

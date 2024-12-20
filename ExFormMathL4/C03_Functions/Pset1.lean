@@ -324,8 +324,8 @@ example
 fun _ _ h => hf (hg h)
 
 -- ---------------------------------------------------------------------
--- Exercise 4. Prove that
---    (f : X → Y) (g : Y → Z) (hf : Surjective f) (hg : Surjective g) : Surjective (g ∘ f)
+-- Exercise 9. Prove that if f : X → Y and g : Y → Z are surjective,
+-- then so is g ∘ f.
 -- ---------------------------------------------------------------------
 
 -- Proof 1 (detailed)

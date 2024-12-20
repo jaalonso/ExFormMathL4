@@ -356,8 +356,14 @@ by
     g (f x) = g y := by rw [hx]
           _ = z   := by rw [hy]
 
--- Proof 2 (automatic)
-example (f : X → Y) (g : Y → Z) (hf : Surjective f) (hg : Surjective g) : Surjective (g ∘ f) := by
+-- Proof 2
+-- =======
+
+example
+  (hf : Surjective f)
+  (hg : Surjective g)
+  : Surjective (g ∘ f) :=
+by
   exact Surjective.comp hg hf
 
 -- Proof 3 (equilibrated)

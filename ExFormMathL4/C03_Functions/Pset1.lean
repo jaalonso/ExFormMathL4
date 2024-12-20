@@ -328,6 +328,20 @@ fun _ _ h => hf (hg h)
 -- then so is g ∘ f.
 -- ---------------------------------------------------------------------
 
+-- Demonstration in natural language
+-- ================================
+
+-- Suppose that f : X → Y and g : Y → Z are surjective. We need to
+-- prove that
+--     (∀z ∈ Z)(∃x ∈ X)[g(f(x)) = z]
+-- Let z ∈ Z. Since g is surjective, there exists a y ∈ Y such that
+--     g(y) = z                                                      (1)
+-- Since f is surjective, there exists an x ∈ X such that
+--     f(x) = y                                                      (2)
+-- Therefore,
+--     g(f(x)) = g(y)   [by (2)]
+--             = z      [by (1)]
+
 -- Proof 1
 -- =======
 

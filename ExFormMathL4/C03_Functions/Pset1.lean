@@ -423,6 +423,32 @@ by
   -- ⊢ g (f x) = z
   simp [hx, hy]
 
+-- Comentario de JA: La 3ª demostración se puede simplificar como se
+-- muestra a continuación.
+
+-- Proof 4
+-- =======
+
+example
+  (hf : Surjective f)
+  (hg : Surjective g)
+  : Surjective (g ∘ f) :=
+by
+  intro z
+  -- z : Z
+  -- ⊢ ∃ a, g (f a) = z
+  obtain ⟨y, hy⟩ := hg z
+  -- y : Y
+  -- hy : g y = z
+  obtain ⟨x, hx⟩ := hf y
+  -- x : X
+  -- hx : f x = y
+  use x
+  -- ⊢ g (f x) = z
+  calc
+    g (f x) = g y := by rw [hx]
+          _ = z   := by rw [hy]
+
 -- ---------------------------------------------------------------------
 -- Exercise 5. Prove that
 --    Injective (g ∘ f) → Injective f

@@ -328,17 +328,33 @@ fun _ _ h => hf (hg h)
 -- then so is g ∘ f.
 -- ---------------------------------------------------------------------
 
--- Proof 1 (detailed)
-example (f : X → Y) (g : Y → Z) (hf : Surjective f) (hg : Surjective g) : Surjective (g ∘ f) := by
+-- Proof 1
+-- =======
+
+example
+  (hf : Surjective f)
+  (hg : Surjective g)
+  : Surjective (g ∘ f) :=
+by
   rw [surjective_def] at *
+  -- hf : ∀ (b : Y), ∃ a, f a = b
+  -- hg : ∀ (b : Z), ∃ a, g a = b
+  -- ⊢ ∀ (b : Z), ∃ a, (g ∘ f) a = b
   intro z
+  -- z : Z
+  -- ⊢ ∃ a, (g ∘ f) a = z
   have h : ∃ y, g y = z := hg z
   cases' h with y hy
+  -- y : Y
+  -- hy : g y = z
   obtain ⟨x, hx⟩ := hf y
+  -- x : X
+  -- hx : f x = y
   use x
+  -- ⊢ (g ∘ f) x = z
   calc
     g (f x) = g y := by rw [hx]
-    _ = z := by rw [hy]
+          _ = z   := by rw [hy]
 
 -- Proof 2 (automatic)
 example (f : X → Y) (g : Y → Z) (hf : Surjective f) (hg : Surjective g) : Surjective (g ∘ f) := by

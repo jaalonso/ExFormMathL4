@@ -366,6 +366,18 @@ example
 by
   exact Surjective.comp hg hf
 
+-- Comentario de JA: La 2ª demostración se puede simplificar como se
+-- muestra a continuación.
+
+-- Proof 2a
+-- ========
+
+example
+  (hf : Surjective f)
+  (hg : Surjective g)
+  : Surjective (g ∘ f) :=
+Surjective.comp hg hf
+
 -- Proof 3 (equilibrated)
 example (f : X → Y) (g : Y → Z) (hf : Surjective f) (hg : Surjective g) : Surjective (g ∘ f) := by
   rw [surjective_def] at *

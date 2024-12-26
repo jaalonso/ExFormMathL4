@@ -494,8 +494,12 @@ by
   -- ⊢ g (f a) = g (f b)
   rw [hab]
 
--- Proof 2 (automatic)
-example (f : X → Y) (g : Y → Z) : Injective (g ∘ f) → Injective f := by
+-- Proof 3
+-- =======
+
+example:
+  Injective (g ∘ f) → Injective f :=
+by
   exact fun a => Injective.of_comp a
 
 -- Proof 3 (equilibrated)

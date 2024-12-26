@@ -512,11 +512,20 @@ example:
   Injective (g ∘ f) → Injective f :=
 Injective.of_comp
 
--- Proof 3 (equilibrated)
-example (f : X → Y) (g : Y → Z) : Injective (g ∘ f) → Injective f := by
+-- Proof 5
+-- =======
+
+example :
+  Injective (g ∘ f) → Injective f :=
+by
   simp [injective_def, comp_eval]
+  -- ⊢ (∀ (a b : X), g (f a) = g (f b) → a = b) → ∀ (a b : X), f a = f b → a = b
   intro h a b hab
+  -- a b : X
+  -- hab : f a = f b
+  -- ⊢ a = b
   apply h
+  -- ⊢ g (f a) = g (f b)
   simp [hab]
 
 -- ---------------------------------------------------------------------

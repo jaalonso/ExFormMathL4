@@ -328,7 +328,7 @@ fun _ _ h => hf (hg h)
 -- then so is g ∘ f.
 -- ---------------------------------------------------------------------
 
--- Demonstration in natural language
+-- Demostration in natural language
 -- ================================
 
 -- Suppose that f : X → Y and g : Y → Z are surjective. We need to
@@ -450,8 +450,7 @@ by
           _ = z   := by rw [hy]
 
 -- ---------------------------------------------------------------------
--- Exercise 5. Prove that
---    Injective (g ∘ f) → Injective f
+-- Exercise 10. Prove that if (g ∘ f) is injective, then so is f.
 -- ---------------------------------------------------------------------
 
 -- Proof 1 (detailed)

@@ -470,6 +470,30 @@ by
   -- ⊢ (g ∘ f) a = (g ∘ f) b
   rw [comp_eval, comp_eval, hab]
 
+-- Comentario de JA: La 1ª demostración se puede detallar como se
+-- muestra a continuación.
+
+-- Proof 2
+-- =======
+
+example :
+  Injective (g ∘ f) → Injective f :=
+by
+  rw [injective_def]
+  -- ⊢ (∀ (a b : X), (g ∘ f) a = (g ∘ f) b → a = b) → Injective f
+  intro h a b hab
+  -- h : ∀ (a b : X), (g ∘ f) a = (g ∘ f) b → a = b
+  -- a b : X
+  -- hab : f a = f b
+  -- ⊢ a = b
+  apply h
+  -- ⊢ (g ∘ f) a = (g ∘ f) b
+  rw [comp_eval]
+  -- ⊢ g (f a) = (g ∘ f) b
+  rw [comp_eval]
+  -- ⊢ g (f a) = g (f b)
+  rw [hab]
+
 -- Proof 2 (automatic)
 example (f : X → Y) (g : Y → Z) : Injective (g ∘ f) → Injective f := by
   exact fun a => Injective.of_comp a

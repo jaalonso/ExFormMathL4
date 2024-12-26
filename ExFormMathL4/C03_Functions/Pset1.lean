@@ -453,11 +453,21 @@ by
 -- Exercise 10. Prove that if (g ∘ f) is injective, then so is f.
 -- ---------------------------------------------------------------------
 
--- Proof 1 (detailed)
-example (f : X → Y) (g : Y → Z) : Injective (g ∘ f) → Injective f := by
+-- Proof 1
+-- =======
+
+example :
+  Injective (g ∘ f) → Injective f :=
+by
   rw [injective_def]
+  -- ⊢ (∀ (a b : X), (g ∘ f) a = (g ∘ f) b → a = b) → Injective f
   intro h a b hab
+  -- h : ∀ (a b : X), (g ∘ f) a = (g ∘ f) b → a = b
+  -- a b : X
+  -- hab : f a = f b
+  -- ⊢ a = b
   apply h
+  -- ⊢ (g ∘ f) a = (g ∘ f) b
   rw [comp_eval, comp_eval, hab]
 
 -- Proof 2 (automatic)

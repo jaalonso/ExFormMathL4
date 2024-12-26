@@ -502,6 +502,16 @@ example:
 by
   exact fun a => Injective.of_comp a
 
+-- Comentario de JA: La 3ª demostración se puede simplificar como se
+-- muestra a continuación.
+
+-- Proof 4
+-- =======
+
+example:
+  Injective (g ∘ f) → Injective f :=
+Injective.of_comp
+
 -- Proof 3 (equilibrated)
 example (f : X → Y) (g : Y → Z) : Injective (g ∘ f) → Injective f := by
   simp [injective_def, comp_eval]

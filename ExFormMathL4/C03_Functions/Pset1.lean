@@ -188,6 +188,8 @@ surjective_id
 -- then so is g ∘ f.
 -- ---------------------------------------------------------------------
 
+
+
 -- Proof 1
 -- =======
 
@@ -328,8 +330,8 @@ fun _ _ h => hf (hg h)
 -- then so is g ∘ f.
 -- ---------------------------------------------------------------------
 
--- Demostration in natural language
--- ================================
+-- Proof in natural language
+-- =========================
 
 -- Suppose that f : X → Y and g : Y → Z are surjective. We need to
 -- prove that
@@ -452,6 +454,20 @@ by
 -- ---------------------------------------------------------------------
 -- Exercise 10. Prove that if (g ∘ f) is injective, then so is f.
 -- ---------------------------------------------------------------------
+
+-- Proof in natural language
+-- =========================
+
+-- To prove that f is injective, let a and b be such that:
+--    f(a) = f(b)                                                    (1)
+-- and we need to prove that a = b.
+--
+-- From (1) we have:
+--    g(f(a)) = g(f(b))
+-- And, by the definition of composition,
+--    (g∘f)(a) = (g∘f)(b)
+-- Finally, since g∘f is injective, we have:
+--    a = b
 
 -- Proof 1
 -- =======

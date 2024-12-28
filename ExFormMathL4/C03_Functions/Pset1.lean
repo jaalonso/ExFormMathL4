@@ -563,7 +563,7 @@ by
 example : Injective (g ∘ f) → Injective f :=
   fun I _ _ h ↦ I <| congr_arg g h
 
--- Proof 7
+-- Proof 8
 -- =======
 
 example : Injective (g ∘ f) → Injective f :=

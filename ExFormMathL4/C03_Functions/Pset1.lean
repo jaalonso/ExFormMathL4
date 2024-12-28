@@ -528,6 +528,25 @@ by
   -- ⊢ g (f a) = g (f b)
   simp [hab]
 
+-- Proof 6
+-- =======
+
+example : Injective (g ∘ f) → Injective f :=
+by
+  intro I
+  intro a b h
+  apply I
+  exact congr_arg g h
+
+-- Comentario de JA: La 6 demostración se puede simplificar como se
+-- muestra a continuación.
+
+-- Proof 7
+-- =======
+
+example : Injective (g ∘ f) → Injective f :=
+  fun I _ _ h ↦ I <| congr_arg g h
+
 -- ---------------------------------------------------------------------
 -- Exercise 6. Prove that
 --    Surjective (g ∘ f) → Surjective g

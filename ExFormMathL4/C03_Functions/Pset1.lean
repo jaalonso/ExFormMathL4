@@ -607,9 +607,21 @@ by
   -- hx : g (f x) = z
   use (f x)
 
--- Proof 2 (automatic)
-example (f : X → Y) (g : Y → Z) : Surjective (g ∘ f) → Surjective g := by
+-- Proof 2
+-- =======
+
+example : Surjective (g ∘ f) → Surjective g :=
+by
   exact fun a => Surjective.of_comp a
+
+-- Comentario de JA: La 2ª demostración se puede simplificar como se
+-- muestra a continuación.
+
+-- Proof 3
+-- =======
+
+example : Surjective (g ∘ f) → Surjective g :=
+Surjective.of_comp
 
 
 -- Proof 3 (equilibrated)

@@ -579,8 +579,7 @@ by
   exact I h2
 
 -- ---------------------------------------------------------------------
--- Exercise 6. Prove that
---    Surjective (g ∘ f) → Surjective g
+-- Exercise 11. Prove that if (g ∘ f) is surjective, then so is f.
 -- ---------------------------------------------------------------------
 
 -- Proof 1 (detailed)

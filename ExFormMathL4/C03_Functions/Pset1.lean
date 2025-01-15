@@ -623,13 +623,22 @@ by
 example : Surjective (g ∘ f) → Surjective g :=
 Surjective.of_comp
 
+-- Proof 3
+-- =======
 
--- Proof 3 (equilibrated)
-example (f : X → Y) (g : Y → Z) : Surjective (g ∘ f) → Surjective g := by
+example : Surjective (g ∘ f) → Surjective g :=
+by
   simp [surjective_def, comp_eval]
+  -- ⊢ (∀ (b : Z), ∃ a, g (f a) = b) → ∀ (b : Z), ∃ a, g a = b
   intro h z
+  -- h : ∀ (b : Z), ∃ a, g (f a) = b
+  -- z : Z
+  -- ⊢ ∃ a, g a = z
   specialize h z
+  -- h : ∃ a, g (f a) = z
   obtain ⟨x, hx⟩ := h
+  -- x : X
+  -- hx : g (f x) = z
   use (f x)
 
 

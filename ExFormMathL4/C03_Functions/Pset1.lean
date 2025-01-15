@@ -582,15 +582,29 @@ by
 -- Exercise 11. Prove that if (g ∘ f) is surjective, then so is f.
 -- ---------------------------------------------------------------------
 
--- Proof 1 (detailed)
-example (f : X → Y) (g : Y → Z) : Surjective (g ∘ f) → Surjective g := by
+-- Proof 1
+-- =======
+
+example : Surjective (g ∘ f) → Surjective g :=
+by
   rw [surjective_def]
+  -- g : Y → Z
+  -- ⊢ (∀ (b : Z), ∃ a, (g ∘ f) a = b) → Surjective g
   intro h
+  -- h : ∀ (b : Z), ∃ a, (g ∘ f) a = b
+  -- ⊢ Surjective g
   rw [surjective_def]
+  -- ⊢ ∀ (b : Z), ∃ a, g a = b
   intro z
+  -- z : Z
+  -- ⊢ ∃ a, g a = z
   specialize h z
+  -- h : ∃ a, (g ∘ f) a = z
   obtain ⟨x, hx⟩ := h
+  -- hx : (g ∘ f) x = z
+  -- ⊢ ∃ a, g a = z
   rw [comp_eval] at hx
+  -- hx : g (f x) = z
   use (f x)
 
 -- Proof 2 (automatic)

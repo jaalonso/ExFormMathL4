@@ -4,7 +4,8 @@
 -- Seville, November 03, 2024
 -- ---------------------------------------------------------------------
 
--- In this problem set, we work with some inductive types and prove results about them by cases.
+-- In this problem set, we work with some inductive types and prove
+-- results about them by cases.
 --
 -- It is based on [Section03functions/Sheet3.lean](https://tinyurl.com/2xlkt9kh)
 -- from [Kevin Buzzard's course](https://tinyurl.com/26ek593r).
@@ -42,7 +43,6 @@ theorem Yb_ne_Yc : Y.b ≠ Y.c := by
 theorem gYb_eq_gYc : g Y.b = g Y.c := by
   rfl
 
-
 open Function
 open Section3sheet1
 
@@ -58,7 +58,6 @@ theorem gf_surjective : Surjective (g ∘ f) := by
   rw [surjective_def]
   intro z
   use X.a
-
 
 example : ¬∀ A B C : Type, ∀ (φ : A → B) (ψ : B → C), Surjective (ψ ∘ φ) → Surjective φ := by
   sorry

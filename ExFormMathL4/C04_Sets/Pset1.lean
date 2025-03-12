@@ -19,7 +19,7 @@ variable (A B C D : Set X)
 theorem subset_def : A ⊆ B ↔ ∀ x, x ∈ A → x ∈ B := by
   rfl
 
-variable (x : X)
+variable {x : X}
 
 theorem mem_union_iff : x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B := by
   rfl
@@ -27,131 +27,332 @@ theorem mem_union_iff : x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B := by
 theorem mem_inter_iff : x ∈ A ∩ B ↔ x ∈ A ∧ x ∈ B :=
   Iff.rfl
 
-
 -- ---------------------------------------------------------------------
 -- Exercise 1. Prove that
 --    A ⊆ A
 -- ---------------------------------------------------------------------
 
--- Proof 1 (detailed)
-example : A ⊆ A := by
+-- Proof 1
+-- =======
+
+example : A ⊆ A :=
+by
   rw [subset_def]
+  -- x : X
+  -- ⊢ ∀ x ∈ A, x ∈ A
   intro x hx
+  -- x : X
+  -- hx : x ∈ A
+  -- ⊢ x ∈ A
   exact hx
 
--- Proof 2 (automatic)
-example : A ⊆ A := by
+-- Proof 2
+-- =======
+
+example : A ⊆ A :=
+by
   exact fun ⦃a⦄ a => a
 
--- Proof 3 (equilibrated)
-example : A ⊆ A := by
+-- Comentario de JA: La 2ª demostración se puede simplificar como se
+-- muestra a continuación.
+
+-- Proof 3
+-- =======
+
+example : A ⊆ A :=
+fun _ a => a
+
+-- Proof 4
+-- =======
+
+example : A ⊆ A :=
+by
   simp [subset_def]
+
+-- Proof 5
+-- =======
+
+example : A ⊆ A :=
+by
+  simp
 
 -- ---------------------------------------------------------------------
 -- Exercise 2. Prove that
 --    A ⊆ B → B ⊆ C → A ⊆ C
 -- ---------------------------------------------------------------------
 
--- Proof 1 (detailed)
-example : A ⊆ B → B ⊆ C → A ⊆ C := by
+-- Proof 1
+-- =======
+
+example : A ⊆ B → B ⊆ C → A ⊆ C :=
+by
   intro hAsB hBsC
+  -- hAsB : A ⊆ B
+  -- hBsC : B ⊆ C
+  -- ⊢ A ⊆ C
   rw [subset_def] at *
+  -- hAsB : ∀ x ∈ A, x ∈ B
+  -- hBsC : ∀ x ∈ B, x ∈ C
+  -- ⊢ ∀ x ∈ A, x ∈ C
   intro x hxeA
+  -- x : X
+  -- hxeA : x ∈ A
+  -- ⊢ x ∈ C
   apply hAsB at hxeA
+  -- hxeA : x ∈ B
   apply hBsC at hxeA
+  -- hxeA : x ∈ C
   exact hxeA
 
--- Proof 2 (automatic)
+-- Proof 2
+-- =======
+
 example : A ⊆ B → B ⊆ C → A ⊆ C := by
   exact fun a a_1 ⦃a_2⦄ a_3 => a_1 (a a_3)
 
--- Proof 3 (equilibrated)
+-- Proof 3
+-- =======
+
+example : A ⊆ B → B ⊆ C → A ⊆ C :=
+fun a a_1 _ a_3 => a_1 (a a_3)
+
+-- Proof 4
+-- =======
+
 example : A ⊆ B → B ⊆ C → A ⊆ C := by
   intro hAsB hBsC
+  -- hAsB : A ⊆ B
+  -- hBsC : B ⊆ C
+  -- ⊢ A ⊆ C
   rw [subset_def] at *
+  -- hAsB : ∀ x ∈ A, x ∈ B
+  -- hBsC : ∀ x ∈ B, x ∈ C
+  -- ⊢ ∀ x ∈ A, x ∈ C
   intro x hxeA
+  -- x : X
+  -- hxeA : x ∈ A
+  -- ⊢ x ∈ C
   apply hBsC
+  -- ⊢ x ∈ B
   apply hAsB
+  -- ⊢ x ∈ A
   exact hxeA
-
 
 -- ---------------------------------------------------------------------
 -- Exercise 3. Prove that
 --    A ⊆ A ∪ B
 -- ---------------------------------------------------------------------
 
--- Proof 1 (detailed)
-example : A ⊆ A ∪ B := by
+-- Proof 1
+-- =======
+
+example : A ⊆ A ∪ B :=
+by
   rw [subset_def]
+  -- x : X
+  -- ⊢ ∀ x ∈ A, x ∈ A ∪ B
   intro x hxeA
+  -- x : X
+  -- hxeA : x ∈ A
+  -- ⊢ x ∈ A ∪ B
   rw [mem_union_iff]
+  -- ⊢ x ∈ A ∨ x ∈ B
   left
+  -- ⊢ x ∈ A
   exact hxeA
 
--- Proof 2 (automatic)
-example : A ⊆ A ∪ B := by
+-- Proof 2
+-- =======
+
+example : A ⊆ A ∪ B :=
+by
   exact Set.subset_union_left
 
--- Proof 3 (equilibrated)
-example : A ⊆ A ∪ B := by
+-- Comentario de JA: La 2ª demostración se puede simplificar como se
+-- muestra a continuación.
 
-  sorry
+-- Proof 3
+-- =======
 
+example : A ⊆ A ∪ B :=
+Set.subset_union_left
+
+-- Proof 4
+-- =======
+
+example : A ⊆ A ∪ B :=
+fun _ => Or.inl
+
+-- Proof 5
+-- =======
+
+example : A ⊆ A ∪ B :=
+by simp
 
 -- ---------------------------------------------------------------------
 -- Exercise 4. Prove that
 --    A ∩ B ⊆ A
 -- ---------------------------------------------------------------------
 
--- Proof 1 (detailed)
-example : A ∩ B ⊆ A := by
+-- Proof 1
+-- =======
+
+example : A ∩ B ⊆ A :=
+by
   rw [subset_def]
+  -- x : X
+  -- ⊢ ∀ x ∈ A ∩ B, x ∈ A
   intro x h_x_in_AyB
+  -- x : X
+  -- h_x_in_AyB : x ∈ A ∩ B
+  -- ⊢ x ∈ A
   rw [mem_inter_iff] at h_x_in_AyB
+  -- h_x_in_AyB : x ∈ A ∧ x ∈ B
   cases' h_x_in_AyB with hA hB
+  -- hA : x ∈ A
+  -- hB : x ∈ B
   exact hA
 
--- Proof 2 (automatic)
-example : A ∩ B ⊆ A := by
-exact Set.inter_subset_left
+-- Proof 2
+-- =======
 
--- Proof 3 (equilibrated)
-example : A ∩ B ⊆ A := by
+example : A ∩ B ⊆ A :=
+Set.inter_subset_left
+
+-- Proof 3
+-- =======
+
+example : A ∩ B ⊆ A :=
+by
   simp [subset_def, mem_inter_iff]
+  -- ⊢ ∀ x ∈ A, x ∈ B → x ∈ A
   intro x hxA _hxB
+  -- x : X
+  -- hxA : x ∈ A
+  -- _hxB : x ∈ B
+  -- ⊢ x ∈ A
   exact hxA
 
+-- Proof 4
+-- =======
+
+example : A ∩ B ⊆ A :=
+fun _ => And.left
+
+-- Proof 5
+-- =======
+
+example : A ∩ B ⊆ A :=
+by simp
 
 -- ---------------------------------------------------------------------
 -- Exercise 5. Prove that
 --    A ⊆ B → A ⊆ C → A ⊆ B ∩ C
 -- ---------------------------------------------------------------------
 
--- Proof 1 (detailed)
-example : A ⊆ B → A ⊆ C → A ⊆ B ∩ C := by
+-- Proof 1
+-- =======
+
+example : A ⊆ B → A ⊆ C → A ⊆ B ∩ C :=
+by
   intro h_A_in_B h_A_in_C
+  -- h_A_in_B : A ⊆ B
+  -- h_A_in_C : A ⊆ C
+  -- ⊢ A ⊆ B ∩ C
   rw [subset_def] at *
+  -- h_A_in_B : ∀ x ∈ A, x ∈ B
+  -- h_A_in_C : ∀ x ∈ A, x ∈ C
+  -- ⊢ ∀ x ∈ A, x ∈ B ∩ C
   intro x x_in_A
+  -- x : X
+  -- x_in_A : x ∈ A
+  -- ⊢ x ∈ B ∩ C
   rw [mem_inter_iff]
+  -- ⊢ x ∈ B ∧ x ∈ C
   constructor
-  apply h_A_in_B at x_in_A
-  exact x_in_A
-  apply h_A_in_C at x_in_A
-  exact x_in_A
+  . -- ⊢ x ∈ B
+    apply h_A_in_B at x_in_A
+    -- x_in_A : x ∈ B
+    exact x_in_A
+  . -- ⊢ x ∈ C
+    apply h_A_in_C at x_in_A
+    -- x_in_A : x ∈ C
+    exact x_in_A
 
--- Proof 2 (automatic)
-example : A ⊆ B → A ⊆ C → A ⊆ B ∩ C := by
-  exact fun a a_1 => Set.subset_inter a a_1
+-- Proof 2
+-- =======
 
--- Proof 3 (equilibrated)
-example : A ⊆ B → A ⊆ C → A ⊆ B ∩ C := by
+example : A ⊆ B → A ⊆ C → A ⊆ B ∩ C :=
+Set.subset_inter
+
+-- Proof 3
+-- =======
+
+example : A ⊆ B → A ⊆ C → A ⊆ B ∩ C :=
+by
   intro hAsB hAsC
+  -- hAsB : A ⊆ B
+  -- hAsC : A ⊆ C
+  -- ⊢ A ⊆ B ∩ C
   simp [subset_def, mem_inter_iff] at *
+  -- hAsB : ∀ x ∈ A, x ∈ B
+  -- hAsC : ∀ x ∈ A, x ∈ C
+  -- ⊢ ∀ x ∈ A, x ∈ B ∧ x ∈ C
   intro x hxA
+  -- x : X
+  -- hxA : x ∈ A
+  -- ⊢ x ∈ B ∧ x ∈ C
   specialize hAsB x hxA
+  -- hAsB : x ∈ B
   specialize hAsC x hxA
+  -- hAsC : x ∈ C
   exact ⟨hAsB, hAsC⟩
 
+-- Proof 4
+-- =======
+
+example : A ⊆ B → A ⊆ C → A ⊆ B ∩ C :=
+by
+  intro hAsB hAsC
+  -- hAsB : A ⊆ B
+  -- hAsC : A ⊆ C
+  -- ⊢ A ⊆ B ∩ C
+  intro x hx
+  -- x : X
+  -- hx : x ∈ A
+  -- ⊢ x ∈ B ∩ C
+  constructor
+  . -- ⊢ x ∈ B
+    exact hAsB hx
+  . -- ⊢ x ∈ C
+    exact hAsC hx
+
+-- Proof 5
+-- =======
+
+example : A ⊆ B → A ⊆ C → A ⊆ B ∩ C :=
+by
+  intro hAsB hAsC
+  -- hAsB : A ⊆ B
+  -- hAsC : A ⊆ C
+  -- ⊢ A ⊆ B ∩ C
+  intro x hx
+  -- x : X
+  -- hx : x ∈ A
+  -- ⊢ x ∈ B ∩ C
+  exact ⟨hAsB hx, hAsC hx⟩
+
+-- Proof 6
+-- =======
+
+example : A ⊆ B → A ⊆ C → A ⊆ B ∩ C :=
+fun hAsB hAsC _ hx => ⟨hAsB hx, hAsC hx⟩
+
+-- Proof 6
+-- =======
+
+example : A ⊆ B → A ⊆ C → A ⊆ B ∩ C :=
+by aesop
 
 -- ---------------------------------------------------------------------
 -- Exercise 6. Prove that

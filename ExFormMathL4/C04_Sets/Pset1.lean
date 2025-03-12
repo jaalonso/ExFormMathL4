@@ -9,7 +9,7 @@
 -- It is based on [Section04functions/Sheet1.lean](https://tinyurl.com/2xlkt9kh)
 -- from [Kevin Buzzard's course](https://tinyurl.com/26ek593r).
 
-import Mathlib.Tactic -- imports all the Lean tactics
+import Mathlib.Tactic
 
 namespace Section4sheet1
 
@@ -359,17 +359,34 @@ by aesop
 --    B ⊆ A → C ⊆ A → B ∪ C ⊆ A
 -- ---------------------------------------------------------------------
 
--- Proof 1 (detailed)
-example : B ⊆ A → C ⊆ A → B ∪ C ⊆ A := by
+-- Proof 1
+-- =======
+
+example : B ⊆ A → C ⊆ A → B ∪ C ⊆ A :=
+by
   intro h_B_in_A h_C_in_A
+  -- h_B_in_A : B ⊆ A
+  -- h_C_in_A : C ⊆ A
+  -- ⊢ B ∪ C ⊆ A
   rw [subset_def] at *
+  -- h_B_in_A : ∀ x ∈ B, x ∈ A
+  -- h_C_in_A : ∀ x ∈ C, x ∈ A
+  -- ⊢ ∀ x ∈ B ∪ C, x ∈ A
   intro x h_x_in_B_o_C
+  -- x : X
+  -- h_x_in_B_o_C : x ∈ B ∪ C
+  -- ⊢ x ∈ A
   rw [mem_union_iff] at h_x_in_B_o_C
+  -- h_x_in_B_o_C : x ∈ B ∨ x ∈ C
   cases' h_x_in_B_o_C with h_x_in_B h_x_in_C
-  apply h_B_in_A at h_x_in_B
-  exact h_x_in_B
-  apply h_C_in_A at h_x_in_C
-  exact h_x_in_C
+  . -- h_x_in_B : x ∈ B
+    apply h_B_in_A at h_x_in_B
+    -- h_x_in_B : x ∈ A
+    exact h_x_in_B
+  . -- h_x_in_C : x ∈ C
+    apply h_C_in_A at h_x_in_C
+    -- h_x_in_C : x ∈ A
+    exact h_x_in_C
 
 -- Proof 2 (automatic)
 example : B ⊆ A → C ⊆ A → B ∪ C ⊆ A := by

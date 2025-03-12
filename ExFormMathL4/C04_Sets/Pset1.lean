@@ -388,9 +388,11 @@ by
     -- h_x_in_C : x ∈ A
     exact h_x_in_C
 
--- Proof 2 (automatic)
-example : B ⊆ A → C ⊆ A → B ∪ C ⊆ A := by
-  exact fun a a_1 => Set.union_subset a a_1
+-- Proof 2
+-- =======
+
+example : B ⊆ A → C ⊆ A → B ∪ C ⊆ A :=
+  Set.union_subset
 
 -- Proof 3 (equilibrated)
 example : B ⊆ A → C ⊆ A → B ∪ C ⊆ A := by

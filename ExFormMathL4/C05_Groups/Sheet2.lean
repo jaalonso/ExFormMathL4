@@ -14,7 +14,7 @@ import Mathlib.Tactic
 namespace Section5sheet2
 
 
-class WeakGroup (G : Type) extends One G, Mul G, Inv G : Type where
+class WeakGroup (G : Type) extends One G, Mul G, Inv G where
   mul_assoc : ∀ a b c : G, a * b * c = a * (b * c)
   one_mul : ∀ a : G, 1 * a = a
   inv_mul_self : ∀ a : G, a⁻¹ * a = 1
@@ -86,7 +86,7 @@ end WeakGroup
 
 
 
-class BadGroup (G : Type) extends One G, Mul G, Inv G : Type where
+class BadGroup (G : Type) extends One G, Mul G, Inv G where
   mul_assoc : ∀ a b c : G, a * b * c = a * (b * c)
   mul_one : ∀ a : G, a * 1 = a
   inv_mul_self : ∀ a : G, a⁻¹ * a = 1

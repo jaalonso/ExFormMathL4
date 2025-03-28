@@ -27,8 +27,8 @@ example (a b : G) (ha : a ∈ H) (hb : b ∈ H) : a * b ∈ H := by
   exact H.mul_mem ha hb
 
 -- Proof 2
-example (a b : G) (ha : a ∈ H) (hb : b ∈ H) : a * b ∈ H := by
-  sorry
+-- example (a b : G) (ha : a ∈ H) (hb : b ∈ H) : a * b ∈ H := by
+--   sorry
 
 -- se me ocurre una demostración por reducción al absurdo, empleando que un grupo es cerrado
 -- para su operación interna, pero no sé cómo ponerlo en pie.

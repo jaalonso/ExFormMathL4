@@ -49,17 +49,17 @@ open Section3sheet1
 theorem gf_injective : Injective (g ∘ f) := by
   simp [injective_def, comp_eval]
 
-example : ¬∀ A B C : Type, ∀ (φ : A → B) (ψ : B → C), Injective (ψ ∘ φ) → Injective ψ := by
-  change (∀ A B C : Type, ∀ (φ : A → B) (ψ : B → C), Injective (ψ ∘ φ) → Injective ψ) → False
-  intro h
-  sorry
+-- example : ¬∀ A B C : Type, ∀ (φ : A → B) (ψ : B → C), Injective (ψ ∘ φ) → Injective ψ := by
+--   change (∀ A B C : Type, ∀ (φ : A → B) (ψ : B → C), Injective (ψ ∘ φ) → Injective ψ) → False
+--   intro h
+--   sorry
 
 theorem gf_surjective : Surjective (g ∘ f) := by
   rw [surjective_def]
   intro z
   use X.a
 
-example : ¬∀ A B C : Type, ∀ (φ : A → B) (ψ : B → C), Surjective (ψ ∘ φ) → Surjective φ := by
-  sorry
+-- example : ¬∀ A B C : Type, ∀ (φ : A → B) (ψ : B → C), Surjective (ψ ∘ φ) → Surjective φ := by
+--   sorry
 
 end Section3sheet3

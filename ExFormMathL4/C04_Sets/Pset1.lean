@@ -394,16 +394,32 @@ by
 example : B ⊆ A → C ⊆ A → B ∪ C ⊆ A :=
   Set.union_subset
 
--- Proof 3 (equilibrated)
-example : B ⊆ A → C ⊆ A → B ∪ C ⊆ A := by
+-- Proof 3
+-- =======
+
+example : B ⊆ A → C ⊆ A → B ∪ C ⊆ A :=
+by
   intro hBsA hCsA
+  -- hBsA : B ⊆ A
+  -- hCsA : C ⊆ A
+  -- ⊢ B ∪ C ⊆ A
   simp [subset_def, mem_union_iff] at *
+  -- hBsA : ∀ x ∈ B, x ∈ A
+  -- hCsA : ∀ x ∈ C, x ∈ A
+  -- ⊢ ∀ (x : X), x ∈ B ∨ x ∈ C → x ∈ A
   intro x hxeBoC
+  -- x : X
+  -- hxeBoC : x ∈ B ∨ x ∈ C
+  -- ⊢ x ∈ A
   cases' hxeBoC with hxeB hxeC
-  apply hBsA
-  exact hxeB
-  apply hCsA
-  exact hxeC
+  . -- hxeB : x ∈ B
+    apply hBsA
+    -- ⊢ x ∈ B
+    exact hxeB
+  . -- hxeC : x ∈ C
+    apply hCsA
+    -- ⊢ x ∈ C
+    exact hxeC
 
 
 -- ---------------------------------------------------------------------

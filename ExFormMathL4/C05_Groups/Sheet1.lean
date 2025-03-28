@@ -219,14 +219,14 @@ example : (a * b)⁻¹ = b⁻¹ * a⁻¹ := by
 -- ---------------------------------------------------------------------
 
 -- Proof 1
-example (h : ∀ g : G, g * g = 1) : ∀ g h : G, g * h = h * g := by
-  intro a b
-  have h' : ∀ g : G, g = g⁻¹ := by
-    exact fun g => eq_inv_of_mul_eq_one_left (h g)
-  calc
-    a * b = a⁻¹ * b⁻¹ := sorry -- by rw [h' (a * b), ...]  ? -- aplicación de que todo elemento es su propio inverso
-    _ = (b * a)⁻¹ := by group -- aplicación del resultado del ej anterior
-    _ = b * a := by sorry -- aplicación de que todo elemento es su propio inverso
+-- example (h : ∀ g : G, g * g = 1) : ∀ g h : G, g * h = h * g := by
+--   intro a b
+--   have h' : ∀ g : G, g = g⁻¹ := by
+--     exact fun g => eq_inv_of_mul_eq_one_left (h g)
+--   calc
+--     a * b = a⁻¹ * b⁻¹ := sorry -- by rw [h' (a * b), ...]  ? -- aplicación de que todo elemento es su propio inverso
+--     _ = (b * a)⁻¹ := by group -- aplicación del resultado del ej anterior
+--     _ = b * a := by sorry -- aplicación de que todo elemento es su propio inverso
 
 -- Proof 2
 example (h : ∀ g : G, g * g = 1) : ∀ g h : G, g * h = h * g :=

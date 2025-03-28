@@ -162,14 +162,14 @@ example : id '' S = S := by
 -- ---------------------------------------------------------------------
 
 -- Proof 1 (detailed)
-example : g ∘ f ⁻¹' U = f ⁻¹' (g ⁻¹' U) := by
-  ext x
-  constructor
-  intro h
-  rw [preimage, preimage] at *
-  simp at *
-  exact h
-  sorry
+-- example : g ∘ f ⁻¹' U = f ⁻¹' (g ⁻¹' U) := by
+--   ext x
+--   constructor
+--   intro h
+--   rw [preimage, preimage] at *
+--   simp at *
+--   exact h
+--   sorry
 
 -- Proof 2 (automatic)
 example : g ∘ f ⁻¹' U = f ⁻¹' (g ⁻¹' U) := by
@@ -214,5 +214,5 @@ example : g ∘ f '' S = g '' (f '' S) := by
 -- ---------------------------------------------------------------------
 
 -- Proof 1 (detailed)
-example (f : ℕ → ℕ) (h : ∀ x, f x = 37) : False := by
-  sorry
+-- example (f : ℕ → ℕ) (h : ∀ x, f x = 37) : False := by
+--   sorry

@@ -544,18 +544,37 @@ fun AsB CsD _ x => by aesop
 --    A ⊆ B → C ⊆ D → A ∩ C ⊆ B ∩ D
 -- ---------------------------------------------------------------------
 
--- Proof 1 (detailed)
+-- Proof 1
+-- =======
+
 example : A ⊆ B → C ⊆ D → A ∩ C ⊆ B ∩ D := by
   intro hAB hCD
+  -- hAB : A ⊆ B
+  -- hCD : C ⊆ D
+  -- ⊢ A ∩ C ⊆ B ∩ D
   rw [subset_def] at *
+  -- hAB : ∀ x ∈ A, x ∈ B
+  -- hCD : ∀ x ∈ C, x ∈ D
+  -- ⊢ ∀ x ∈ A ∩ C, x ∈ B ∩ D
   intro x hxinAyC
+  -- x : X
+  -- hxinAyC : x ∈ A ∩ C
+  -- ⊢ x ∈ B ∩ D
   rw [mem_inter_iff] at *
+  -- hxinAyC : x ∈ A ∧ x ∈ C
+  -- ⊢ x ∈ B ∧ x ∈ D
   cases' hxinAyC with hxinA hxinC
+  -- hxinA : x ∈ A
+  -- hxinC : x ∈ C
   apply hAB at hxinA
+  -- hxinA : x ∈ B
   apply hCD at hxinC
+  -- hxinC : x ∈ D
   constructor
-  exact hxinA
-  exact hxinC
+  . -- ⊢ x ∈ B
+    exact hxinA
+  . -- ⊢ x ∈ D
+    exact hxinC
 
 -- Proof 2 (automatic)
 example : A ⊆ B → C ⊆ D → A ∩ C ⊆ B ∩ D := by

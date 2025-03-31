@@ -508,6 +508,21 @@ by
     -- ⊢ x ∈ D
     exact CsD hxC
 
+-- Proof 5
+-- =======
+
+example : A ⊆ B → C ⊆ D → A ∪ C ⊆ B ∪ D :=
+by
+  rintro AsB CsD x (hxA | hxC)
+  -- AsB : A ⊆ B
+  -- CsD : C ⊆ D
+  -- x : X
+  -- ⊢ x ∈ B ∪ D
+  . -- hxA : x ∈ A
+    exact Set.mem_union_left D (AsB hxA)
+  . -- hxC : x ∈ C
+    exact Set.mem_union_right B (CsD hxC)
+
 -- ---------------------------------------------------------------------
 -- Exercise 8. Prove that
 --    A ⊆ B → C ⊆ D → A ∩ C ⊆ B ∩ D

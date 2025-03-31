@@ -576,9 +576,11 @@ example : A ⊆ B → C ⊆ D → A ∩ C ⊆ B ∩ D := by
   . -- ⊢ x ∈ D
     exact hxinC
 
--- Proof 2 (automatic)
-example : A ⊆ B → C ⊆ D → A ∩ C ⊆ B ∩ D := by
-  exact fun a a_1 => Set.inter_subset_inter a a_1
+-- Proof 2
+-- =======
+
+example : A ⊆ B → C ⊆ D → A ∩ C ⊆ B ∩ D :=
+inter_subset_inter
 
 -- Proof 3 (equilibrated)
 example : A ⊆ B → C ⊆ D → A ∩ C ⊆ B ∩ D := by

@@ -13,6 +13,8 @@ import Mathlib.Tactic
 
 namespace Section4sheet1
 
+open Set
+
 variable (X : Type)
 variable (A B C D : Set X)
 
@@ -166,7 +168,7 @@ by
 
 example : A ⊆ A ∪ B :=
 by
-  exact Set.subset_union_left
+  exact subset_union_left
 
 -- Comentario de JA: La 2ª demostración se puede simplificar como se
 -- muestra a continuación.
@@ -175,7 +177,7 @@ by
 -- =======
 
 example : A ⊆ A ∪ B :=
-Set.subset_union_left
+subset_union_left
 
 -- Proof 4
 -- =======
@@ -217,7 +219,7 @@ by
 -- =======
 
 example : A ∩ B ⊆ A :=
-Set.inter_subset_left
+inter_subset_left
 
 -- Proof 3
 -- =======
@@ -283,7 +285,7 @@ by
 -- =======
 
 example : A ⊆ B → A ⊆ C → A ⊆ B ∩ C :=
-Set.subset_inter
+subset_inter
 
 -- Proof 3
 -- =======
@@ -392,7 +394,7 @@ by
 -- =======
 
 example : B ⊆ A → C ⊆ A → B ∪ C ⊆ A :=
-  Set.union_subset
+  union_subset
 
 -- Proof 3
 -- =======
@@ -464,7 +466,7 @@ by
 -- =======
 
 example : A ⊆ B → C ⊆ D → A ∪ C ⊆ B ∪ D :=
-  Set.union_subset_union
+union_subset_union
 
 -- Proof 3
 -- =======
@@ -519,9 +521,18 @@ by
   -- x : X
   -- ⊢ x ∈ B ∪ D
   . -- hxA : x ∈ A
-    exact Set.mem_union_left D (AsB hxA)
+    exact mem_union_left D (AsB hxA)
   . -- hxC : x ∈ C
-    exact Set.mem_union_right B (CsD hxC)
+    exact mem_union_right B (CsD hxC)
+
+-- Proof 6
+-- =======
+
+example : A ⊆ B → C ⊆ D → A ∪ C ⊆ B ∪ D :=
+fun AsB CsD ⦃_⦄ a =>
+  Or.casesOn a (fun hxA => mem_union_left D (AsB hxA))
+               (fun hxC => mem_union_right B (CsD hxC))
+
 
 -- ---------------------------------------------------------------------
 -- Exercise 8. Prove that

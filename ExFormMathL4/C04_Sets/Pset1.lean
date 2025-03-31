@@ -582,9 +582,22 @@ example : A ⊆ B → C ⊆ D → A ∩ C ⊆ B ∩ D := by
 example : A ⊆ B → C ⊆ D → A ∩ C ⊆ B ∩ D :=
 inter_subset_inter
 
--- Proof 3 (equilibrated)
-example : A ⊆ B → C ⊆ D → A ∩ C ⊆ B ∩ D := by
+-- Proof 3
+-- =======
+
+example : A ⊆ B → C ⊆ D → A ∩ C ⊆ B ∩ D :=
+by
   intro hAsB hCsD
+  -- hAsB : A ⊆ B
+  -- hCsD : C ⊆ D
+  -- ⊢ A ∩ C ⊆ B ∩ D
   simp [subset_def, mem_inter_iff] at *
+  -- hAsB : ∀ x ∈ A, x ∈ B
+  -- hCsD : ∀ x ∈ C, x ∈ D
+  -- ⊢ ∀ x ∈ A, x ∈ C → x ∈ B ∧ x ∈ D
   intro x hxA hxC
+  -- x : X
+  -- hxA : x ∈ A
+  -- hxC : x ∈ C
+  -- ⊢ x ∈ B ∧ x ∈ D
   exact ⟨hAsB x hxA, hCsD x hxC⟩

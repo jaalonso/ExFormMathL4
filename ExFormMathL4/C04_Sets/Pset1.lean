@@ -460,9 +460,11 @@ by
     -- ⊢ x ∈ D
     exact hxC
 
--- Proof 2 (automatic)
-example : A ⊆ B → C ⊆ D → A ∪ C ⊆ B ∪ D := by
-  exact fun a a_1 => Set.union_subset_union a a_1
+-- Proof 2
+-- =======
+
+example : A ⊆ B → C ⊆ D → A ∪ C ⊆ B ∪ D :=
+  Set.union_subset_union
 
 -- Proof 3 (equilibrated)
 example : A ⊆ B → C ⊆ D → A ∪ C ⊆ B ∪ D := by

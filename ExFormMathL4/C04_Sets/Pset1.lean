@@ -466,15 +466,28 @@ by
 example : A ⊆ B → C ⊆ D → A ∪ C ⊆ B ∪ D :=
   Set.union_subset_union
 
--- Proof 3 (equilibrated)
-example : A ⊆ B → C ⊆ D → A ∪ C ⊆ B ∪ D := by
-  intro hAsB hCsD
-  simp [subset_def, mem_union_iff] at *
-  intro x hxAoC
-  specialize hAsB x
-  specialize hCsD x
-  exact Or.imp hAsB hCsD hxAoC
+-- Proof 3
+-- =======
 
+example : A ⊆ B → C ⊆ D → A ∪ C ⊆ B ∪ D :=
+by
+  intro hAsB hCsD
+  -- hAsB : A ⊆ B
+  -- hCsD : C ⊆ D
+  -- ⊢ A ∪ C ⊆ B ∪ D
+  simp [subset_def, mem_union_iff] at *
+  -- hAsB : ∀ x ∈ A, x ∈ B
+  -- hCsD : ∀ x ∈ C, x ∈ D
+  -- ⊢ ∀ (x : X), x ∈ A ∨ x ∈ C → x ∈ B ∨ x ∈ D
+  intro x hxAoC
+  -- x : X
+  -- hxAoC : x ∈ A ∨ x ∈ C
+  -- ⊢ x ∈ B ∨ x ∈ D
+  specialize hAsB x
+  -- hAsB : x ∈ A → x ∈ B
+  specialize hCsD x
+  -- hCsD : x ∈ C → x ∈ D
+  exact Or.imp hAsB hCsD hxAoC
 
 -- ---------------------------------------------------------------------
 -- Exercise 8. Prove that

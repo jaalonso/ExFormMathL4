@@ -529,10 +529,15 @@ by
 -- =======
 
 example : A ⊆ B → C ⊆ D → A ∪ C ⊆ B ∪ D :=
-fun AsB CsD ⦃_⦄ a =>
-  Or.casesOn a (fun hxA => mem_union_left D (AsB hxA))
+fun AsB CsD _ x =>
+  Or.casesOn x (fun hxA => mem_union_left D (AsB hxA))
                (fun hxC => mem_union_right B (CsD hxC))
 
+-- Proof 7
+-- =======
+
+example : A ⊆ B → C ⊆ D → A ∪ C ⊆ B ∪ D :=
+fun AsB CsD _ x => by aesop
 
 -- ---------------------------------------------------------------------
 -- Exercise 8. Prove that

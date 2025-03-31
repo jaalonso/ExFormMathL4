@@ -421,25 +421,44 @@ by
     -- ⊢ x ∈ C
     exact hxeC
 
-
 -- ---------------------------------------------------------------------
 -- Exercise 7. Prove that
 --    A ⊆ B → C ⊆ D → A ∪ C ⊆ B ∪ D
 -- ---------------------------------------------------------------------
 
--- Proof 1 (detailed)
-example : A ⊆ B → C ⊆ D → A ∪ C ⊆ B ∪ D := by
+-- Proof 1
+-- =======
+
+example : A ⊆ B → C ⊆ D → A ∪ C ⊆ B ∪ D :=
+by
   intro hAB hCD
+  -- hAB : A ⊆ B
+  -- hCD : C ⊆ D
+  -- ⊢ A ∪ C ⊆ B ∪ D
   rw [subset_def] at *
+  -- hAB : ∀ x ∈ A, x ∈ B
+  -- hCD : ∀ x ∈ C, x ∈ D
+  -- ⊢ ∀ x ∈ A ∪ C, x ∈ B ∪ D
   intro x hxAoC
+  -- x : X
+  -- hxAoC : x ∈ A ∪ C
+  -- ⊢ x ∈ B ∪ D
   rw [mem_union_iff] at *
+  -- hxAoC : x ∈ A ∨ x ∈ C
+  -- ⊢ x ∈ B ∨ x ∈ D
   cases' hxAoC with hxA hxC
-  apply hAB at hxA
-  left
-  exact hxA
-  apply hCD at hxC
-  right
-  exact hxC
+  . -- hxA : x ∈ A
+    apply hAB at hxA
+    -- hxA : x ∈ B
+    left
+    -- ⊢ x ∈ B
+    exact hxA
+  . -- hxC : x ∈ C
+    apply hCD at hxC
+    -- hxC : x ∈ D
+    right
+    -- ⊢ x ∈ D
+    exact hxC
 
 -- Proof 2 (automatic)
 example : A ⊆ B → C ⊆ D → A ∪ C ⊆ B ∪ D := by

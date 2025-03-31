@@ -601,3 +601,18 @@ by
   -- hxC : x ∈ C
   -- ⊢ x ∈ B ∧ x ∈ D
   exact ⟨hAsB x hxA, hCsD x hxC⟩
+
+-- Proof 4
+-- =======
+
+example : A ⊆ B → C ⊆ D → A ∩ C ⊆ B ∩ D :=
+by
+  rintro hAsB hCsD x ⟨hxA, hxC⟩
+  -- hAsB : A ⊆ B
+  -- hCsD : C ⊆ D
+  -- ⊢ A ∩ C ⊆ B ∩ D
+  -- x : X
+  -- hxA : x ∈ A
+  -- hxC : x ∈ C
+  -- ⊢ x ∈ B ∧ x ∈ D
+  exact ⟨hAsB hxA, hCsD hxC⟩

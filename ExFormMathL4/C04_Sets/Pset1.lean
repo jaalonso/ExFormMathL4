@@ -489,6 +489,25 @@ by
   -- hCsD : x ∈ C → x ∈ D
   exact Or.imp hAsB hCsD hxAoC
 
+-- Proof 4
+-- =======
+
+example : A ⊆ B → C ⊆ D → A ∪ C ⊆ B ∪ D :=
+by
+  rintro AsB CsD x (hxA | hxC)
+  -- AsB : A ⊆ B
+  -- CsD : C ⊆ D
+  -- x : X
+  -- ⊢ x ∈ B ∪ D
+  . -- hxA : x ∈ A
+    left
+    -- ⊢ x ∈ B
+    exact AsB hxA
+  . -- hxC : x ∈ C
+    right
+    -- ⊢ x ∈ D
+    exact CsD hxC
+
 -- ---------------------------------------------------------------------
 -- Exercise 8. Prove that
 --    A ⊆ B → C ⊆ D → A ∩ C ⊆ B ∩ D

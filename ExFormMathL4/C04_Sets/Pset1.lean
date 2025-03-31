@@ -616,3 +616,24 @@ by
   -- hxC : x ∈ C
   -- ⊢ x ∈ B ∧ x ∈ D
   exact ⟨hAsB hxA, hCsD hxC⟩
+
+-- Proof 5
+-- =======
+
+example : A ⊆ B → C ⊆ D → A ∩ C ⊆ B ∩ D :=
+by
+  rintro hAsB hCsD x ⟨hxA, hxC⟩
+  -- hAsB : A ⊆ B
+  -- hCsD : C ⊆ D
+  -- ⊢ A ∩ C ⊆ B ∩ D
+  -- x : X
+  -- hxA : x ∈ A
+  -- hxC : x ∈ C
+  -- ⊢ x ∈ B ∧ x ∈ D
+  exact ⟨hAsB hxA, hCsD hxC⟩
+
+-- Proof 6
+-- =======
+
+example : A ⊆ B → C ⊆ D → A ∩ C ⊆ B ∩ D :=
+fun hAsB hCsD _ x => And.casesOn x fun hxA hxC => ⟨hAsB hxA, hCsD hxC⟩

@@ -637,3 +637,9 @@ by
 
 example : A ⊆ B → C ⊆ D → A ∩ C ⊆ B ∩ D :=
 fun hAsB hCsD _ x => And.casesOn x fun hxA hxC => ⟨hAsB hxA, hCsD hxC⟩
+
+-- Proof 7
+-- =======
+
+example : A ⊆ B → C ⊆ D → A ∩ C ⊆ B ∩ D :=
+fun hAsB hCsD _ x => by aesop
